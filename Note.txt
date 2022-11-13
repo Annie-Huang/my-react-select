@@ -1,0 +1,15 @@
+This Is The Perfect Project For Your React/TypeScript Resume (https://www.youtube.com/watch?v=bAJlYgeovlg)
+
+https://github.com/WebDevSimplified/react-select
+https://github.com/Annie-Huang/my-react-select
+
+
+============================================================================
+
+PS C:\react> npm create vite
+√ Project name: ... my-react-select
+√ Select a framework: » React
+√ Select a variant: » TypeScript
+
+
+PS C:\react\my-react-select> npm run dev
