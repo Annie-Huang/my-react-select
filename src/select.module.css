@@ -44,3 +44,24 @@
   border: 0.25em solid transparent;
   border-top-color: #777; /* very smart way to use border top without a content to create the caret down triangle */
 }
+
+.options {
+  position: absolute;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  /*display: none;*/
+
+  max-height: 15em;
+  overflow-y: auto;
+  border: 0.05em solid #777;
+  border-radius: 0.25em;
+  width: 100%;
+  left: 0;
+  top: calc(
+    100% + 0.25em
+  ); /* Make sure the menu always below the input with a gap */
+}
+.options.show {
+  display: block;
+}
