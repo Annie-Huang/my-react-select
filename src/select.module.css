@@ -38,3 +38,9 @@
   align-self: stretch; /* use align-self so it can work with min-height in .container */
   width: 0.05em;
 }
+
+.caret {
+  translate: 0 25%;
+  border: 0.25em solid transparent;
+  border-top-color: #777; /* very smart way to use border top without a content to create the caret down triangle */
+}
