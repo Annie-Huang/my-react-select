@@ -1,8 +1,8 @@
 import styles from './select.module.css';
 
-type SelectOption = {
+export type SelectOption = {
   label: string;
-  value: string;
+  value: any;
 };
 
 type SelectProps = {
@@ -20,7 +20,7 @@ const Select = ({ value, onChange, options }: SelectProps) => {
       <div className={styles.caret}></div>
       <ul className={styles.options}>
         {options.map((option) => (
-          <li key={option.value} className={styles.option}>
+          <li key={option.label} className={styles.option}>
             {option.label}
           </li>
         ))}
