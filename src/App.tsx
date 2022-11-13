@@ -1,7 +1,7 @@
+import Select from './Select';
 
 function App() {
-
-  return <h1>Hi</h1>
+  return <Select options={[]} onChange={() => {}} />;
 }
 
-export default App
+export default App;
