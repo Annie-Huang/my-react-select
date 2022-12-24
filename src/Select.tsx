@@ -1,5 +1,5 @@
 import styles from './select.module.css';
-import { useState } from 'react';
+import React, { useState } from 'react';
 
 export type SelectOption = {
   label: string;
@@ -15,6 +15,11 @@ type SelectProps = {
 const Select = ({ value, onChange, options }: SelectProps) => {
   const [isOpen, setIsOpen] = useState(false);
 
+  // const clearOption = (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
+  const clearOption = () => {
+    onChange(undefined);
+  };
+
   //onBlur is like click outside of the <div>
   return (
     <div
@@ -24,7 +29,16 @@ const Select = ({ value, onChange, options }: SelectProps) => {
       className={styles.container}
     >
       <span className={styles.value}>{value?.label}</span>
-      <button className={styles['clear-btn']}>&times;</button>
+      <button
+        onClick={(e) => {
+          // stopPropagation so the parent will not detect the click so that it will not close the menu
+          e.stopPropagation();
+          clearOption();
+        }}
+        className={styles['clear-btn']}
+      >
+        &times;
+      </button>
       <div className={styles.divider}></div>
       <div className={styles.caret}></div>
       <ul className={`${styles.options} ${isOpen ? styles.show : ''}`}>
