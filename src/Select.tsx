@@ -14,7 +14,7 @@ type SelectProps = {
 const Select = ({ value, onChange, options }: SelectProps) => {
   return (
     <div tabIndex={0} className={styles.container}>
-      <span className={styles.value}>Value</span>
+      <span className={styles.value}>{value?.label}</span>
       <button className={styles['clear-btn']}>&times;</button>
       <div className={styles.divider}></div>
       <div className={styles.caret}></div>
