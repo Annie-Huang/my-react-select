@@ -20,6 +20,8 @@ const Select = ({ value, onChange, options }: SelectProps) => {
 
   const selectOption = (option: SelectOption) => onChange(option);
 
+  const isOptionSelected = (option: SelectOption) => option === value;
+
   //onBlur is like click outside of the <div>
   return (
     <div
@@ -51,7 +53,9 @@ const Select = ({ value, onChange, options }: SelectProps) => {
               setIsOpen(false);
             }}
             key={option.label}
-            className={styles.option}
+            className={`${styles.option} ${
+              isOptionSelected(option) ? styles.selected : ''
+            }`}
           >
             {option.label}
           </li>
