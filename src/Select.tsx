@@ -6,13 +6,23 @@ export type SelectOption = {
   value: string | number;
 };
 
-type SelectProps = {
-  options: SelectOption[];
+type MultipleSelectProps = {
+  multiple: true;
+  value?: SelectOption[];
+  onChange: (value: SelectOption[]) => void;
+};
+
+type SingleSelectProps = {
+  multiple?: false;
   value?: SelectOption;
   onChange: (value: SelectOption | undefined) => void;
 };
 
-const Select = ({ value, onChange, options }: SelectProps) => {
+type SelectProps = {
+  options: SelectOption[];
+} & (SingleSelectProps | MultipleSelectProps);
+
+const Select = ({ multiple, value, onChange, options }: SelectProps) => {
   const [isOpen, setIsOpen] = useState(false);
   const [highlightedIndex, setHighlightedIndex] = useState(0);
 
