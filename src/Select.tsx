@@ -3,7 +3,7 @@ import React, { useEffect, useState } from 'react';
 
 export type SelectOption = {
   label: string;
-  value: any;
+  value: string | number;
 };
 
 type SelectProps = {
@@ -60,7 +60,7 @@ const Select = ({ value, onChange, options }: SelectProps) => {
               setIsOpen(false);
             }}
             onMouseEnter={() => setHighlightedIndex(index)}
-            key={option.label}
+            key={option.value}
             className={`${styles.option} ${
               isOptionSelected(option) ? styles.selected : ''
             } ${index === highlightedIndex ? styles.highlighted : ''}`}
