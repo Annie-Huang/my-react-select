@@ -67,3 +67,19 @@
 .options.show {
   display: block;
 }
+
+.option {
+  padding: 0.25em 0.5em;
+
+  /* everytime i see a cursor: pointer, it's a red flag to me. It means the element maybe be able to go through tab in keyboard only.
+     This is is that it cannot go through arrow down like a normal <select> does.
+  */
+  cursor: pointer;
+}
+.option.highlighted {
+  background-color: hsl(200, 100%, 50%);
+  color: white;
+}
+.option.selected {
+  background-color: hsl(200, 100%, 70%);
+}
