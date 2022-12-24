@@ -50,7 +50,7 @@
   margin: 0;
   padding: 0;
   list-style: none;
-  /*display: none;*/
+  display: none;
 
   max-height: 15em;
   overflow-y: auto;
@@ -61,6 +61,8 @@
   top: calc(
     100% + 0.25em
   ); /* Make sure the menu always below the input with a gap */
+  background-color: white;
+  z-index: 100;
 }
 .options.show {
   display: block;
