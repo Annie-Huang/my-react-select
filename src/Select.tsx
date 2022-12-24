@@ -46,7 +46,10 @@ const Select = ({ multiple, value, onChange, options }: SelectProps) => {
     }
   };
 
-  const isOptionSelected = (option: SelectOption) => option === value;
+  const isOptionSelected = (option: SelectOption) =>
+    multiple && Array.isArray(value)
+      ? value.includes(option)
+      : option === value;
 
   useEffect(() => {
     if (isOpen) setHighlightedIndex(0);
