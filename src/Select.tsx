@@ -31,15 +31,12 @@ const Select = ({ multiple, value, onChange, options }: SelectProps) => {
 
   const selectOption = (option: SelectOption) => {
     if (multiple) {
-      if (value === undefined) {
-        onChange([option]);
-      } else if (Array.isArray(value)) {
-        if (value.includes(option)) {
-          // I personally don't really like the unselect when it's selected for the mutliple-select option.
-          onChange(value.filter((o) => o !== option));
-        } else {
-          onChange([...value, option]);
-        }
+      if (value?.includes(option)) {
+        // I personally don't really like the unselect when it's selected for the mutliple-select option.
+        // but it is more for the button list in the input.
+        onChange(value.filter((o) => o !== option));
+      } else {
+        value ? onChange([...value, option]) : onChange([option]);
       }
     } else {
       if (option !== value) onChange(option);
