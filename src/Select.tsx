@@ -16,9 +16,9 @@ const Select = ({ value, onChange, options }: SelectProps) => {
   const [isOpen, setIsOpen] = useState(false);
 
   // const clearOption = (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
-  const clearOption = () => {
-    onChange(undefined);
-  };
+  const clearOption = () => onChange(undefined);
+
+  const selectOption = (option: SelectOption) => onChange(option);
 
   //onBlur is like click outside of the <div>
   return (
@@ -43,7 +43,16 @@ const Select = ({ value, onChange, options }: SelectProps) => {
       <div className={styles.caret}></div>
       <ul className={`${styles.options} ${isOpen ? styles.show : ''}`}>
         {options.map((option) => (
-          <li key={option.label} className={styles.option}>
+          <li
+            onClick={(e) => {
+              // stopPropagation so the parent will not detect the click so that it will not close the menu
+              e.stopPropagation();
+              selectOption(option);
+              setIsOpen(false);
+            }}
+            key={option.label}
+            className={styles.option}
+          >
             {option.label}
           </li>
         ))}
