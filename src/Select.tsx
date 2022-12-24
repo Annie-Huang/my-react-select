@@ -14,6 +14,7 @@ type SelectProps = {
 
 const Select = ({ value, onChange, options }: SelectProps) => {
   const [isOpen, setIsOpen] = useState(false);
+  const [highlightedIndex, setHighlightedIndex] = useState(0);
 
   // const clearOption = (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
   const clearOption = () => onChange(undefined);
@@ -44,7 +45,7 @@ const Select = ({ value, onChange, options }: SelectProps) => {
       <div className={styles.divider}></div>
       <div className={styles.caret}></div>
       <ul className={`${styles.options} ${isOpen ? styles.show : ''}`}>
-        {options.map((option) => (
+        {options.map((option, index) => (
           <li
             onClick={(e) => {
               // stopPropagation so the parent will not detect the click so that it will not close the menu
@@ -52,10 +53,11 @@ const Select = ({ value, onChange, options }: SelectProps) => {
               selectOption(option);
               setIsOpen(false);
             }}
+            onMouseEnter={() => setHighlightedIndex(index)}
             key={option.label}
             className={`${styles.option} ${
               isOptionSelected(option) ? styles.selected : ''
-            }`}
+            } ${index === highlightedIndex ? styles.highlighted : ''}`}
           >
             {option.label}
           </li>
