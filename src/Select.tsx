@@ -27,10 +27,23 @@ const Select = ({ multiple, value, onChange, options }: SelectProps) => {
   const [highlightedIndex, setHighlightedIndex] = useState(0);
 
   // const clearOption = (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
-  const clearOption = () => onChange(undefined);
+  const clearOption = () => (multiple ? onChange([]) : onChange(undefined));
 
   const selectOption = (option: SelectOption) => {
-    if (option !== value) onChange(option);
+    if (multiple) {
+      if (value === undefined) {
+        onChange([option]);
+      } else if (Array.isArray(value)) {
+        if (value.includes(option)) {
+          // I personally don't really like the unselect when it's selected for the mutliple-select option.
+          onChange(value.filter((o) => o !== option));
+        } else {
+          onChange([...value, option]);
+        }
+      }
+    } else {
+      if (option !== value) onChange(option);
+    }
   };
 
   const isOptionSelected = (option: SelectOption) => option === value;
