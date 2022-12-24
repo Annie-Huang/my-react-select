@@ -1,5 +1,5 @@
 import styles from './select.module.css';
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 
 export type SelectOption = {
   label: string;
@@ -19,9 +19,15 @@ const Select = ({ value, onChange, options }: SelectProps) => {
   // const clearOption = (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
   const clearOption = () => onChange(undefined);
 
-  const selectOption = (option: SelectOption) => onChange(option);
+  const selectOption = (option: SelectOption) => {
+    if (option !== value) onChange(option);
+  };
 
   const isOptionSelected = (option: SelectOption) => option === value;
+
+  useEffect(() => {
+    if (isOpen) setHighlightedIndex(0);
+  }, [isOpen]);
 
   //onBlur is like click outside of the <div>
   return (
