@@ -1,5 +1,5 @@
 import styles from './select.module.css';
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 
 export type SelectOption = {
   label: string;
@@ -25,6 +25,7 @@ type SelectProps = {
 const Select = ({ multiple, value, onChange, options }: SelectProps) => {
   const [isOpen, setIsOpen] = useState(false);
   const [highlightedIndex, setHighlightedIndex] = useState(0);
+  const containerRef = useRef<HTMLDivElement>(null);
 
   // const clearOption = (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
   const clearOption = () => (multiple ? onChange([]) : onChange(undefined));
@@ -52,9 +53,19 @@ const Select = ({ multiple, value, onChange, options }: SelectProps) => {
     if (isOpen) setHighlightedIndex(0);
   }, [isOpen]);
 
+  useEffect(() => {
+    const handler = (e) => {};
+    containerRef.current?.addEventListener('keydown', handler);
+
+    return () => {
+      containerRef.current?.removeEventListener('keydown', handler);
+    };
+  }, []);
+
   //onBlur is like click outside of the <div>
   return (
     <div
+      ref={containerRef}
       onBlur={() => setIsOpen(false)}
       onClick={() => setIsOpen((prev) => !prev)}
       tabIndex={0}
