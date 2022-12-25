@@ -54,13 +54,24 @@ const Select = ({ multiple, value, onChange, options }: SelectProps) => {
   }, [isOpen]);
 
   useEffect(() => {
-    const handler = (e) => {};
+    const handler = (e) => {
+      if (e.target != containerRef.current) return;
+
+      switch (e.code) {
+        // Choose Eneter or Space will open/close menu + select/deselect the option
+        case 'Enter':
+        case 'Space':
+          setIsOpen((prev) => !prev);
+          if (isOpen) selectOption(options[highlightedIndex]);
+          break;
+      }
+    };
     containerRef.current?.addEventListener('keydown', handler);
 
     return () => {
       containerRef.current?.removeEventListener('keydown', handler);
     };
-  }, []);
+  }, [isOpen, highlightedIndex, options]);
 
   //onBlur is like click outside of the <div>
   return (
