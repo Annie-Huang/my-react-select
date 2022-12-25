@@ -13,3 +13,11 @@ PS C:\react> npm create vite
 
 
 PS C:\react\my-react-select> npm run dev
+
+
+Keyboard scenario, assume inside the container already and the intial value is empty:
+Enter -> open menu + highlighted 'First' -> Enter -> close menu + selected 'First' -> Enter -> open menu + highlighted 'First' -> Enter -> close menu + unselected 'First'
+Space -> open menu + highlighted 'First' -> Space -> close menu + selected 'First' -> Space -> open menu + highlighted 'First' -> Space -> close menu + unselected 'First'
+ArrowDown -> open menu + highlighted 'First' -> ArrowDown -> highlighted 'Second' -> ArrowDown -> highlighted 'Third' -> Space -> close menu + selected 'Third'
+          -> ArrowDown -> open menu + highlighted 'First' + selected 'Third' -> ArrowDown -> highlighted 'Second' + selected 'Third' -> Space -> close menu + selected 'Second, Third'
+          -> ArrowDown -> open menu + highlighted 'First' + selected 'Second, Third' -> ArrowDown -> highlighted 'Second' + selected 'Second Third' -> Space -> close menu + selected 'Second'

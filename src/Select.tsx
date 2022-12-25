@@ -54,7 +54,7 @@ const Select = ({ multiple, value, onChange, options }: SelectProps) => {
   }, [isOpen]);
 
   useEffect(() => {
-    const handler = (e) => {
+    const handler = (e: KeyboardEvent) => {
       if (e.target != containerRef.current) return;
 
       switch (e.code) {
@@ -63,6 +63,18 @@ const Select = ({ multiple, value, onChange, options }: SelectProps) => {
         case 'Space':
           setIsOpen((prev) => !prev);
           if (isOpen) selectOption(options[highlightedIndex]);
+          break;
+        case 'ArrowUp':
+        case 'ArrowDown':
+          if (!isOpen) {
+            setIsOpen(true);
+            break;
+          }
+          const newValue = highlightedIndex + (e.code === 'ArrowDown' ? 1 : -1);
+          // We are not going to implement the circular movement when it get to the edge here.
+          if (newValue >= 0 && newValue < options.length) {
+            setHighlightedIndex(newValue);
+          }
           break;
       }
     };
