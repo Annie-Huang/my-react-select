@@ -65,7 +65,7 @@ const Select = ({ multiple, value, onChange, options }: SelectProps) => {
           if (isOpen) selectOption(options[highlightedIndex]);
           break;
         case 'ArrowUp':
-        case 'ArrowDown':
+        case 'ArrowDown': {
           if (!isOpen) {
             setIsOpen(true);
             break;
@@ -75,6 +75,10 @@ const Select = ({ multiple, value, onChange, options }: SelectProps) => {
           if (newValue >= 0 && newValue < options.length) {
             setHighlightedIndex(newValue);
           }
+          break;
+        }
+        case 'Escape':
+          setIsOpen(false);
           break;
       }
     };

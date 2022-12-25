@@ -21,3 +21,4 @@ Space -> open menu + highlighted 'First' -> Space -> close menu + selected 'Firs
 ArrowDown -> open menu + highlighted 'First' -> ArrowDown -> highlighted 'Second' -> ArrowDown -> highlighted 'Third' -> Space -> close menu + selected 'Third'
           -> ArrowDown -> open menu + highlighted 'First' + selected 'Third' -> ArrowDown -> highlighted 'Second' + selected 'Third' -> Space -> close menu + selected 'Second, Third'
           -> ArrowDown -> open menu + highlighted 'First' + selected 'Second, Third' -> ArrowDown -> highlighted 'Second' + selected 'Second Third' -> Space -> close menu + selected 'Second'
+ArrowDown -> open menu + highlighted 'First' -> ArrowDown -> highlighted 'Second' -> Eacape -> close menu, nothing selected -> ArrowDown -> open menu + highlighted 'First'
